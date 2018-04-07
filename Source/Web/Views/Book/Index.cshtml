@@ -1,0 +1,22 @@
+@using Models
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div id="react-app">Loading...</div>
+
+@section scripts {
+    <div>
+        <span>my books</span>
+        @{
+            var books = ViewData["Books"] as List<Book>;
+
+            <ul>
+            @foreach (var book in books)
+            {
+                <li>@book.BookTitle</li>
+            }
+            </ul>
+        }
+    </div>
+}
