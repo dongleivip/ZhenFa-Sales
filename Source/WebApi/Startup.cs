@@ -1,11 +1,7 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Models;
-using Repositories;
 
 namespace WebApi
 {
@@ -26,14 +22,9 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connStr = Configuration.GetConnectionString("Default");
-
-            services.AddDbContext<ApplicationContext>(opts =>
-                opts.UseNpgsql(connStr, b => b.MigrationsAssembly("WebApi")));
-
-            services.AddScoped<IDataRepository<Book>, EfRepository<Book>>();
-
             services.AddMvc();
+
+            ApplicationBoot.RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

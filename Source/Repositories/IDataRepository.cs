@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Repositories
 {
-    public interface IDataRepository<T> where T : class
+    public interface IDataRepository<T> : IRepositoryService where T : class 
     {
         int Add(T entity);
 
